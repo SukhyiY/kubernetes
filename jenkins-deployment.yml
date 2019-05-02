@@ -2,7 +2,9 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: jenkins-deployment
+  namespace: default
 spec:
+  hostNetwork: true
   replicas: 1
   selector:
     matchLabels:
@@ -11,21 +13,19 @@ spec:
     metadata:
       labels:
         app: jenkins
-    spec:
       containers:
         - name: jenkins
-          image: ysukhy/jenkins-master
+          image: jenkins/jenkins:lts
           env:
             - name: JAVA_OPTS
               value: -Djenkins.install.runSetupWizard=false
           ports:
             - name: http-port
               containerPort: 8080
-            - name: jnlp-port
-              containerPort: 50000
+              protocol: TCP
           volumeMounts:
             - name: jenkins-home
-              mountPath: /Users/ysukhy/Documents/Jenkins_Home
+              mountPath: /var/jenkins_home
       volumes:
         - name: jenkins-home
           emptyDir: {}
