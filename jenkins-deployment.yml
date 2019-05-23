@@ -82,11 +82,11 @@ spec:
           name: jenkins-pv-storage
         resources:
           limits:
-            cpu: 1000m
-            memory: 1500Mi
+            cpu: 500m
+            memory: 1200Mi
           requests:
-            cpu: 1000m
-            memory: 1500Mi
+            cpu: 400m
+            memory: 1100Mi
       volumes:
       - name: jenkins-pv-storage
         persistentVolumeClaim:
