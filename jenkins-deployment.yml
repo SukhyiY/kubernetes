@@ -62,7 +62,7 @@ spec:
       labels:
         app: master
     spec:
-      serviceAccountName: nginx-ingress-serviceaccount
+      serviceAccountName: jenkins
       containers:
       - name: master
         image: jenkins/jenkins:latest
